@@ -18,11 +18,13 @@ void read_file(FILE *fd)
 	free(buffer);
 }
 /**
- * parse_line - this function is to separate each line into tokens to determine
+ * parse_line - this function is to separate
+ * each line into tokens to determine
  * which function to call
  * @buffer: this is a pointer that points to line from the file
  * @line_number: this is the line number
- * @format:  this is int type,storage format. If 0 Nodes will be entered as a stack.
+ * @format:  this is int type,storage format.
+ * If 0 Nodes will be entered as a stack.
  * if 1 node will be entered as a queue.
  * Return: always returns 0 if the opcode is stack. or 1 if queue.
  */
@@ -49,10 +51,12 @@ int parse_line(char *buffer, int line_number, int format)
 	return (format);
 }
 /**
- * find_func - this function is to find the appropriate function for the opcode
+ * find_func - this function is to find the
+ * appropriate function for the opcode
  * @opcode: this is a pointer opcode
  * @value: this is a pointer char type argument of opcode
- * @format:  thisis int type storage format. If 0 Nodes will be entered as a stack.
+ * @format:  thisis int type storage format.
+ * If 0 Nodes will be entered as a stack.
  * @ln: this is int type and line number
  * if 1 node will be entered as a queue.
  * Return: always return void
@@ -97,11 +101,14 @@ void find_func(char *opcode, char *value, int ln, int format)
 }
 /**
  * call_fun - this function is to Call the required function.
- * @func: this is a Pointer that points to the function that is about to be called.
+ * @func: this is a Pointer that points to the function
+ * that is about to be called.
  * @op: is a pointer char type and string representing the opcode.
- * @val: this is apointer char type and string representing a numeric value.
+ * @val: this is apointer char type and string
+ * representing a numeric value.
  * @ln: this is int type and line numeber for the instruction.
- * @format: this is int type and format specifier. If 0 Nodes will be entered as a stack.
+ * @format: this is int type and format specifier.
+ * If 0 Nodes will be entered as a stack.
  * if 1 node will be entered as a queue.
  */
 void call_fun(op_func func, char *op, char *val, int ln, int format)
@@ -133,5 +140,21 @@ void call_fun(op_func func, char *op, char *val, int ln, int format)
 	}
 	else
 		func(&head, ln);
+}
+/**
+ * open_file - this function is to open a file
+ * @file_name: this is the file namepath
+ * Return: always return void
+ */
+
+void open_file(char *file_name)
+{
+	FILE *fd = fopen(file_name, "r");
+
+	if (file_name == NULL || fd == NULL)
+		err(2, file_name);
+
+	read_file(fd);
+	fclose(fd);
 }
 
