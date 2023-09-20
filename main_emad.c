@@ -34,4 +34,28 @@ void free_nodes(void)
 		free(tmp);
 	}
 }
+/**
+ * add_to_queue - this is to add a node to the queue.
+ * @new_node: this is a pointer that points to the new node.
+ * @ln: this is int type and line number of the opcode.
+ */
+void add_to_queue(stack_t **new_node, __attribute__((unused))unsigned int ln)
+{
+	stack_t *tmp;
+
+	if (new_node == NULL || *new_node == NULL)
+		exit(EXIT_FAILURE);
+	if (head == NULL)
+	{
+		head = *new_node;
+		return;
+	}
+	tmp = head;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+
+	tmp->next = *new_node;
+	(*new_node)->prev = tmp;
+
+}
 
