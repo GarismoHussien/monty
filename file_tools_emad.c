@@ -95,4 +95,43 @@ void find_func(char *opcode, char *value, int ln, int format)
 	if (flag == 1)
 		err(3, ln, opcode);
 }
+/**
+ * call_fun - this function is to Call the required function.
+ * @func: this is a Pointer that points to the function that is about to be called.
+ * @op: is a pointer char type and string representing the opcode.
+ * @val: this is apointer char type and string representing a numeric value.
+ * @ln: this is int type and line numeber for the instruction.
+ * @format: this is int type and format specifier. If 0 Nodes will be entered as a stack.
+ * if 1 node will be entered as a queue.
+ */
+void call_fun(op_func func, char *op, char *val, int ln, int format)
+{
+	stack_t *node;
+	int flag;
+	int i;
+
+	flag = 1;
+	if (strcmp(op, "push") == 0)
+	{
+		if (val != NULL && val[0] == '-')
+		{
+			val = val + 1;
+			flag = -1;
+		}
+		if (val == NULL)
+			err(5, ln);
+		for (i = 0; val[i] != '\0'; i++)
+		{
+			if (isdigit(val[i]) == 0)
+				err(5, ln);
+		}
+		node = create_node(atoi(val) * flag);
+		if (format == 0)
+			func(&node, ln);
+		if (format == 1)
+			add_to_queue(&node, ln);
+	}
+	else
+		func(&head, ln);
+}
 
