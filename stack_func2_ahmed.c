@@ -1,4 +1,5 @@
 #include "monty.h"
+<<<<<<< HEAD
 /**
  * swap_nodes - thisfunction is to swap the top two elements of the stack.
  * @stack: this is a Pointer that pointing to top node of the stack.
@@ -19,6 +20,10 @@ void swap_nodes(stack_t **stack, unsigned int line_number)
 	tmp->prev = NULL;
 	*stack = tmp;
 }
+=======
+
+
+>>>>>>> d2d5cd48e3c9af63811f3afb91e0a02ade9ec29f
 /**
  * nop - this function is to Do nothing.
  * @stack: this is a Pointer that  pointing to top node of the stack.
@@ -49,10 +54,13 @@ void add_nodes(stack_t **stack, unsigned int line_number)
 	free((*stack)->prev);
 	(*stack)->prev = NULL;
 }
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> d2d5cd48e3c9af63811f3afb91e0a02ade9ec29f
 /**
  * div_nodes - this is to add the top two elements of the stack.
  * @stack: this is a pointer that  pointing to top node of the stack.
@@ -93,4 +101,27 @@ void sub_nodes(stack_t **stack, unsigned int line_number)
 	free((*stack)->prev);
 	(*stack)->prev = NULL;
 }
+<<<<<<< HEAD
+=======
+/**
+ * swap_nodes - thisfunction is to swap the top two elements of the stack.
+ * @stack: this is a Pointer that pointing to top node of the stack.
+ * @line_number: this is int type and  representing the line number of of the opcode.
+ */
+void swap_nodes(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp;
+
+	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
+		more_err(8, line_number, "swap");
+	tmp = (*stack)->next;
+	(*stack)->next = tmp->next;
+	if (tmp->next != NULL)
+		tmp->next->prev = *stack;
+	tmp->next = *stack;
+	(*stack)->prev = tmp;
+	tmp->prev = NULL;
+	*stack = tmp;
+}
+>>>>>>> d2d5cd48e3c9af63811f3afb91e0a02ade9ec29f
 
