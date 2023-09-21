@@ -19,4 +19,22 @@ void print_stack(stack_t **stack, unsigned int line_number)
 		tmp = tmp->next;
 	}
 }
+/**
+ * pop_top - this function is to add a node to the stack.
+ * @stack: this is a Pointer that  pointing to top node of the stack.
+ * @line_number: this is int type Interger representing the line number of of the opcode.
+ */
+void pop_top(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp;
+
+	if (stack == NULL || *stack == NULL)
+		more_err(7, line_number);
+
+	tmp = *stack;
+	*stack = tmp->next;
+	if (*stack != NULL)
+		(*stack)->prev = NULL;
+	free(tmp);
+}
 
